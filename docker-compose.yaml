@@ -1,1 +1,43 @@
 
+version: '3.8'
+services:
+  
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: Nuvelabs123$
+      MYSQL_DATABASE: userdb
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - user-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  usermanagement-application:
+    image: saishshindepersistent/usermanagement:latest
+    # container_name: usermanagement-application
+    ports:
+      - "8082:8081"
+    networks:
+      - user-network
+    depends_on:
+      - mysql-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/userdb
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=Nuvelabs123$
+
+networks:
+  user-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  
