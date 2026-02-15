@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git branch: 'main', url: 'hhttps://github.com/saish-s/usermanagement.git'
+                git branch: 'master', url: 'https://github.com/saish-s/usermanagement.git'
             }
         }
         stage('Build Maven') {

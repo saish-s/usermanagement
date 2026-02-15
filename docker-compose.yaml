@@ -22,7 +22,7 @@ services:
 
   usermanagement-application:
     image: saishshindepersistent/usermanagement:latest
-    # container_name: usermanagement-application
+    container_name: usermanagement-application
     ports:
       - "8082:8081"
     networks:
