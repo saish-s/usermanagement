@@ -19,6 +19,13 @@ spec:
         image: saishshindepersistent/usermanagement:latest
         ports:
         - containerPort: 8081
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:mysql://mysql-db:3306/userdb
+        - name: SPRING_DATASOURCE_USERNAME
+          value: root
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: Nuvelabs123$
 ---
 apiVersion: v1
 kind: Service
